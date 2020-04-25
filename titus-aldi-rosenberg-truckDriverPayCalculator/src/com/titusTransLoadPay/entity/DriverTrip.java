@@ -1,6 +1,7 @@
 package com.titusTransLoadPay.entity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DriverTrip {
@@ -9,20 +10,24 @@ public class DriverTrip {
 
 	private int numberOfStops;
 
-	private List<AldiStores> stores;
+	private int theFarthestStore_forThisTripInMiles;
+
+	private List<AldiStores> storesForThisTrip;
 
 	public void addStores(AldiStores theStore) {
 
-		if (stores == null) {
-			stores = new ArrayList<AldiStores>();
+		if (storesForThisTrip == null) {
+			storesForThisTrip = new ArrayList<AldiStores>();
 		}
-		stores.add(theStore);
+		storesForThisTrip.add(theStore);
 	}
+
+	private List<Integer> collectionOfStoresRoundTripDistanceFromRosenbergWarehouseInMiles;
 
 	public DriverTrip(String tripDate, int numberOfStops, List<AldiStores> stores) {
 		this.tripDate = tripDate;
 		this.numberOfStops = numberOfStops;
-		this.stores = stores;
+		this.storesForThisTrip = stores;
 	}
 
 	public String getTripDate() {
@@ -42,11 +47,34 @@ public class DriverTrip {
 	}
 
 	public List<AldiStores> getStores() {
-		return stores;
+		return storesForThisTrip;
 	}
 
 	public void setStores(List<AldiStores> stores) {
-		this.stores = stores;
+		this.storesForThisTrip = stores;
+	}
+
+	public int getTheFarthestStore() {
+
+		return theFarthestStore_forThisTripInMiles;
+	}
+
+	public void setTheFarthestStore(int numberOfStores, List<AldiStores> stores) {
+
+		int farthestStoreOfTheTripInMiles;
+
+		for (int i = 0; i <= numberOfStores; i++) {
+
+			if (collectionOfStoresRoundTripDistanceFromRosenbergWarehouseInMiles == null) {
+				collectionOfStoresRoundTripDistanceFromRosenbergWarehouseInMiles = new ArrayList<Integer>();
+			}
+			collectionOfStoresRoundTripDistanceFromRosenbergWarehouseInMiles
+					.add(stores.get(i).getStoreRoundTripDistanceFromWarehouseInMiles());
+		}
+
+		farthestStoreOfTheTripInMiles = Collections
+				.max(collectionOfStoresRoundTripDistanceFromRosenbergWarehouseInMiles);
+		theFarthestStore_forThisTripInMiles = farthestStoreOfTheTripInMiles;
 	}
 
 }
