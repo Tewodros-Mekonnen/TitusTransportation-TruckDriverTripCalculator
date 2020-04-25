@@ -6,14 +6,17 @@ import java.util.List;
 
 public class DriverTrip {
 
-	private String tripDate;
+	private String thisTripDate;
 
 	private int numberOfStops;
 
-	private int theFarthestStore_forThisTripInMiles;
+	private double theFarthestStore_forThisTrip_inMiles;
+
+	private List<Double> collectionOfStores_roundTripDistance_fromRosenbergWarehouse_inMiles;
 
 	private List<AldiStores> storesForThisTrip;
 
+	// a convenient method to be able to add stores in a collection.
 	public void addStores(AldiStores theStore) {
 
 		if (storesForThisTrip == null) {
@@ -22,20 +25,21 @@ public class DriverTrip {
 		storesForThisTrip.add(theStore);
 	}
 
-	private List<Integer> collectionOfStoresRoundTripDistanceFromRosenbergWarehouseInMiles;
+	public DriverTrip() {
 
-	public DriverTrip(String tripDate, int numberOfStops, List<AldiStores> stores) {
-		this.tripDate = tripDate;
+	}
+
+	public DriverTrip(int numberOfStops, List<AldiStores> stores) {
 		this.numberOfStops = numberOfStops;
 		this.storesForThisTrip = stores;
 	}
 
-	public String getTripDate() {
-		return tripDate;
+	public String getThisTripDate() {
+		return thisTripDate;
 	}
 
-	public void setTripDate(String tripDate) {
-		this.tripDate = tripDate;
+	public void setThisTripDate(String tripDate) {
+		this.thisTripDate = tripDate;
 	}
 
 	public int getNumberOfStops() {
@@ -54,27 +58,50 @@ public class DriverTrip {
 		this.storesForThisTrip = stores;
 	}
 
-	public int getTheFarthestStore() {
+	public double getTheFarthestStore_forThisTripInMiles() {
 
-		return theFarthestStore_forThisTripInMiles;
+		return theFarthestStore_forThisTrip_inMiles;
 	}
 
-	public void setTheFarthestStore(int numberOfStores, List<AldiStores> stores) {
+	// setTheFarthestStore_forThisTripInMiles method reads the given stores for a
+	// specific trip and then it matches the right round trip mile
+	// for a given store using its store number (as described in AldiStores.java)
+	// and then it creates a collection of
+	// round trip miles, then it takes the maximum mile
+	// from this collection and assigns it to theFarthestStore_forThisTrip_inMiles
+	// field.
+	// this field (theFarthestStore_forThisTrip_inMiles) is essential to calculate
+	// driver's pay for a given trip.
 
-		int farthestStoreOfTheTripInMiles;
+	/**
+	 * @param numberOfStores, number of stores to deliver in a single trip
+	 * @param stores,         stores to deliver in a given trip
+	 */
+	public void setTheFarthestStore_forThisTripInMiles(int numberOfStores, List<AldiStores> stores) {
+
+		double theFarthestStore_OfThisTrip_inMiles;
 
 		for (int i = 0; i <= numberOfStores; i++) {
 
-			if (collectionOfStoresRoundTripDistanceFromRosenbergWarehouseInMiles == null) {
-				collectionOfStoresRoundTripDistanceFromRosenbergWarehouseInMiles = new ArrayList<Integer>();
+			if (collectionOfStores_roundTripDistance_fromRosenbergWarehouse_inMiles == null) {
+				collectionOfStores_roundTripDistance_fromRosenbergWarehouse_inMiles = new ArrayList<Double>();
 			}
-			collectionOfStoresRoundTripDistanceFromRosenbergWarehouseInMiles
+			collectionOfStores_roundTripDistance_fromRosenbergWarehouse_inMiles
 					.add(stores.get(i).getStoreRoundTripDistanceFromWarehouseInMiles());
 		}
 
-		farthestStoreOfTheTripInMiles = Collections
-				.max(collectionOfStoresRoundTripDistanceFromRosenbergWarehouseInMiles);
-		theFarthestStore_forThisTripInMiles = farthestStoreOfTheTripInMiles;
+		theFarthestStore_OfThisTrip_inMiles = Collections
+				.max(collectionOfStores_roundTripDistance_fromRosenbergWarehouse_inMiles);
+		theFarthestStore_forThisTrip_inMiles = theFarthestStore_OfThisTrip_inMiles;
+	}
+
+	@Override
+	public String toString() {
+		return "DriverTrip [thisTripDate=" + thisTripDate + ", numberOfStops=" + numberOfStops
+				+ ", theFarthestStore_forThisTripInMiles=" + theFarthestStore_forThisTrip_inMiles
+				+ ", storesForThisTrip=" + storesForThisTrip
+				+ ", collectionOfStoresRoundTripDistanceFromRosenbergWarehouseInMiles="
+				+ collectionOfStores_roundTripDistance_fromRosenbergWarehouse_inMiles + "]";
 	}
 
 }
