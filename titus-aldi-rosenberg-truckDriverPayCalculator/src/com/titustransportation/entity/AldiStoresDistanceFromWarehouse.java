@@ -1,4 +1,4 @@
-package com.titusTransLoadPay.entity;
+package com.titustransportation.entity;
 
 public class AldiStoresDistanceFromWarehouse {
 

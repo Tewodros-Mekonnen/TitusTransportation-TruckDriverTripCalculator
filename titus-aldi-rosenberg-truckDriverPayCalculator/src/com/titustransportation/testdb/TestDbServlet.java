@@ -1,4 +1,4 @@
-package com.luv2code.testdb;
+package com.titustransportation.testdb;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,7 +29,7 @@ public class TestDbServlet extends HttpServlet {
 
 		// setup connection variables
 
-		String jdbcUrl = "jdbc:mysql://localhost:3306/web_customer_tracker?useSSL=false&serverTimezone=UTC";
+		String jdbcUrl = "jdbc:mysql://localhost:3306/titus-transportation-commercial-truck-drivers?useSSL=false&serverTimezone=UTC";
 		String driver = "com.mysql.cj.jdbc.Driver";
 
 		String user = "springstudent";

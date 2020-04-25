@@ -1,5 +1,11 @@
-package com.titusTransLoadPay.entity;
+package com.titustransportation.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="aldi_stores")
 public class AldiStores {
 
 	// each value in a specific index is equal to the round trip distance(in miles), for all stores served by Rosenberg warehouse.
@@ -10,9 +16,11 @@ public class AldiStores {
 			119.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 109.4, 44.6, 0, 114, 0, 108, 186, 92.2, 80, 108, 45.4, 117.8,
 			97.6, 0, 106, 0, 117.4, 0, 0, 0, 0, 93.4, 0, 0, 304, 82, 212.6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 352, 0, 0, 0, 0,
 			0, 0, 85, 0, 314 };
-
+	
+	@Column(name="store_number")
 	private int storeNumber;
 
+	@Column(name="store_distance")
 	private double storeRoundTripDistanceFromWarehouseInMiles;
 
 	public AldiStores(int storeNumber) {

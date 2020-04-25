@@ -1,4 +1,4 @@
-package com.titusTransLoadPay.entity;
+package com.titustransportation.entity;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,8 +1,8 @@
-package com.titusTransLoadPay.calculateTripPayment;
+package com.titustransportation.calculateTripPayment;
 
 import javax.swing.JOptionPane;
 
-import com.titusTransLoadPay.entity.DriverTrip;
+import com.titustransportation.entity.DriverTrip;
 
 public class TripCalculatorApp {
 
