@@ -13,7 +13,7 @@ E.x. If a specific trip has 3 stops, deliver 3 different stores at different loc
       2 extra stop payment, a 2 stopper will receive 1 extra stop payment etc...
    3. loading/unloading fee
    
-   therefore, total payment will be milePay + extraStopPayment + loading/unloading fee
+   therefore, total payment will be milePay + extraStopPayment + loading/unloading fee. 
    All of these variables are defined(naming is different inside the program) both inside AldiStores.java and DriverTrip.java
 
 
